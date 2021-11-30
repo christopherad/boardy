@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators, FormGroup, FormControl, FormArray, NgForm } from '@angular/forms';
+import { Column } from '../@shared/models';
+import { BoardService } from '../@shared/services/board.service';
 @Component({
   selector: 'app-add-column',
   templateUrl: './add-column.component.html',
@@ -7,12 +9,14 @@ import { Validators, FormGroup, FormControl, FormArray, NgForm } from '@angular/
 })
 export class AddColumnComponent implements OnInit {
 
-  @Output() onColumnAdded: EventEmitter<ColumnForm> = new EventEmitter();
+  @Output() onColumnAdded: EventEmitter<Column> = new EventEmitter();
   name = 'Angular';
   public form!: FormGroup
 
 
-  constructor() { }
+  constructor(
+    private boardService: BoardService
+  ) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -31,12 +35,15 @@ export class AddColumnComponent implements OnInit {
   submit(): void {
     console.log(this.form.value)
     const title = this.form.get("title")?.value;
-    this.onColumnAdded.emit({title: title});
+    this.onColumnAdded.emit();
    // if (this.form.valid) {
      //   console.log('form value: ', this.form.value);
    // } else {
    //     console.log('ERROR, FAUT ECRIRE!  ');
   //  }
+    this.boardService.addColumn(title).subscribe(columnAdded => {
+
+    })
   }
 }
 

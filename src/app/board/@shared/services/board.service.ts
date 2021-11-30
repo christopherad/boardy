@@ -1,22 +1,27 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Column } from '../models/column';
+import { Observable } from 'rxjs';
 
-@Component({
-  selector: 'wt-book-search',
-  templateUrl: './book-search.component.html'
-})
+
+const api = 'https://crudcrud.com/api/216f7b72dbd74a5c87a426d71653da31';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BoardService implements OnInit {
+export class BoardService {
 
-  private _bookListUrl='https://www.googleapis.com/books/v1/volumes?q=extreme%20programming';
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+  ) {
   }
 
-  ngOnInit() {
-     this._httpClient.get(this._bookListUrl);
+  addColumn(title: string) {
+    return this.httpClient.post<Column>(api + '/columns', { title: title });
+  }
+
+  getColumns(title: string): Observable<any>{
+    return this.httpClient.get<Column[]>(api + '/Columns')
   }
 }
