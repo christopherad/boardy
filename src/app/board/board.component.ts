@@ -19,6 +19,7 @@ export class BoardComponent implements OnInit {
   }
 
   addColumn(column: Column){
+    console.log("column > ", column)
     this.columns.push(column);
   }
 }

@@ -35,14 +35,14 @@ export class AddColumnComponent implements OnInit {
   submit(): void {
     console.log(this.form.value)
     const title = this.form.get("title")?.value;
-    this.onColumnAdded.emit();
+    
    // if (this.form.valid) {
      //   console.log('form value: ', this.form.value);
    // } else {
    //     console.log('ERROR, FAUT ECRIRE!  ');
   //  }
     this.boardService.addColumn(title).subscribe(columnAdded => {
-
+      this.onColumnAdded.emit(columnAdded);
     })
   }
 }
