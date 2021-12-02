@@ -20,7 +20,8 @@ export class AddColumnComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required])
+      title: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required])
     });
   }
 
@@ -35,6 +36,7 @@ export class AddColumnComponent implements OnInit {
   submit(): void {
     console.log(this.form.value)
     const title = this.form.get("title")?.value;
+    const description= this.form.get("description")?.value;
     
    // if (this.form.valid) {
      //   console.log('form value: ', this.form.value);
