@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { title } from 'process';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Column } from '../@shared/models';
 import { BoardService } from '../@shared/services/board.service';
 
@@ -12,10 +11,17 @@ export class ColumnComponent implements OnInit {
 
   @Input() column!: Column;
 
-  constructor() { }
+  @Output() onColumnDropped: EventEmitter<Column> = new EventEmitter();
 
+  constructor(
+    private boardService: BoardService
+    ) { }
   ngOnInit(): void {
   }
 
+  delete():void{
+    this.boardService.dropColumn(this.column._id).subscribe(()=> {
+      this.onColumnDropped.emit(this.column);
+    })
+  }
 }
-

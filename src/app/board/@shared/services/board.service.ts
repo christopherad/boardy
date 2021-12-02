@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { COLUMNS } from '../mock/column.mock';
 
 
-const api = 'https://crudcrud.com/api/216f7b72dbd74a5c87a426d71653da31';
+const api = 'https://crudcrud.com/api/1c285a00b90247ea81daf04dd6781805';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +22,11 @@ export class BoardService {
     return this.httpClient.post<Column>(api + '/columns', { title: title });
   }
 
-  getColumns(title: string): Observable<any>{
+  getColumns(): Observable<any>{
     return this.httpClient.get<Column[]>(api + '/Columns')
   }
 
   dropColumn(columnId: number): Observable<any> {
-    return this.httpClient.delete<Column>(api + '/columns/' + columnId)
+    return this.httpClient.delete<Column>(`${api}/Columns/${columnId}`);
   }
 }

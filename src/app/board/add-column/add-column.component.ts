@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Validators, FormGroup, FormControl, FormArray, NgForm } from '@angular/forms';
+import { Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Column } from '../@shared/models';
 import { BoardService } from '../@shared/services/board.service';
 @Component({
