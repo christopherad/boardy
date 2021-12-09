@@ -1,11 +1,11 @@
-import { Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Column } from '../models/column';
 import { Observable } from 'rxjs';
 import { COLUMNS } from '../mock/column.mock';
+import { Injectable } from '@angular/core';
 
 
-const api = 'https://crudcrud.com/api/1c285a00b90247ea81daf04dd6781805';
+const api = 'https://crudcrud.com/api/16879054ceb44012a7f1400a497a9b09';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class BoardService {
   ) {
   }
 
-  addColumn(title: string) {
-    return this.httpClient.post<Column>(api + '/columns', { title: title });
+  addColumn(title: string, description: string) {
+    return this.httpClient.post<Column>(api + '/columns', { title: title, description: description});
   }
 
   getColumns(): Observable<any>{

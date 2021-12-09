@@ -43,7 +43,7 @@ export class AddColumnComponent implements OnInit {
    // } else {
    //     console.log('ERROR, FAUT ECRIRE!  ');
   //  }
-    this.boardService.addColumn(title).subscribe(columnAdded => {
+    this.boardService.addColumn(title, description).subscribe(columnAdded => {
       this.onColumnAdded.emit(columnAdded);
     })
   }
@@ -51,4 +51,5 @@ export class AddColumnComponent implements OnInit {
 
   export interface ColumnForm {
     title: string;
+    description: string;
   }

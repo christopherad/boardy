@@ -1,3 +1,6 @@
-<p>Bienvenue à tous!</p>
-<app-column [column]="column" *ngFor="let column of columns" (onColumnDropped)="deleteColumn($event)"></app-column>
-<app-add-column (onColumnAdded)="addColumn($event)"></app-add-column>
+<div class="container">
+    <div class="jumbotron">
+        <app-column [column]="column" *ngFor="let column of columns" (onColumnDropped)="deleteColumn($event)"></app-column>
+        <app-add-column (onColumnAdded)="addColumn($event)"></app-add-column>
+    </div>
+</div>
