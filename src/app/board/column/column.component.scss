@@ -3,6 +3,9 @@
     margin: 20px;
 }
 
-.column{
+.row{
     display: flex;
+    align-items: stretch;
+    border-radius: 5px;
+    background-color: lightblue;
 }
