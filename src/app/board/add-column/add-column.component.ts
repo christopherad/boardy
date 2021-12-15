@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Column } from '../@shared/models';
 import { BoardService } from '../@shared/services/board.service';
@@ -9,6 +9,7 @@ import { BoardService } from '../@shared/services/board.service';
 })
 export class AddColumnComponent implements OnInit {
 
+  @Input() columnUpdating set SetColumnUpdating(Column : column | undefined)
   @Output() onColumnAdded: EventEmitter<Column> = new EventEmitter();
   name = 'Angular';
   public form!: FormGroup

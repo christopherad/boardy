@@ -29,4 +29,6 @@ export class BoardService {
   dropColumn(columnId: number): Observable<any> {
     return this.httpClient.delete<Column>(`${api}/Columns/${columnId}`);
   }
+
+  updateColumn(column: Column)
 }
