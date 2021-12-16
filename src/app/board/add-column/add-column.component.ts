@@ -9,11 +9,18 @@ import { BoardService } from '../@shared/services/board.service';
 })
 export class AddColumnComponent implements OnInit {
 
-  @Input() columnUpdating set SetColumnUpdating(Column : column | undefined)
+  @Input("columnUpdating") set SetColumnUpdating(column : Column | undefined){
+    if(column != undefined){
+      this.form.patchValue({
+        title: column.title,
+        description: column.description,
+      })
+    }
+  };
   @Output() onColumnAdded: EventEmitter<Column> = new EventEmitter();
   name = 'Angular';
   public form!: FormGroup
-
+  @Output() onUpdatedColumn : EventEmitter<Column> = new EventEmitter();
 
   constructor(
     private boardService: BoardService
@@ -47,7 +54,11 @@ export class AddColumnComponent implements OnInit {
     this.boardService.addColumn(title, description).subscribe(columnAdded => {
       this.onColumnAdded.emit(columnAdded);
     })
+    this.boardService.updateColumn(title, description).subscribe(columnUpdating => {
+      this.onUpdatedColumn.emit(columnUpdating);
+    })
   }
+
 }
 
   export interface ColumnForm {

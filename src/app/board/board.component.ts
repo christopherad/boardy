@@ -13,6 +13,7 @@ export class BoardComponent implements OnInit {
   
   columns: Column[]= [];
   board: Board= BOARD;
+  columnUpdating?: Column;
   
   constructor(private boardService: BoardService) { }
 
@@ -28,5 +29,11 @@ export class BoardComponent implements OnInit {
   deleteColumn(column: Column) {
     console.log("column < ", column)
     this.columns.filter(columnOff=> columnOff._id !=column._id);
+  }
+
+  updateColumn(column: Column) {
+    console.log("column >> ", column);
+    console.log(column.title);
+    this.columnUpdating=column;
   }
 }

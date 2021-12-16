@@ -5,7 +5,7 @@ import { COLUMNS } from '../mock/column.mock';
 import { Injectable } from '@angular/core';
 
 
-const api = 'https://crudcrud.com/api/0800f4dd26504d2abdafe22d7feda87c';
+const api = 'https://crudcrud.com/api/8aa4899a05d74ec28288e5c9a12621cd';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +30,8 @@ export class BoardService {
     return this.httpClient.delete<Column>(`${api}/Columns/${columnId}`);
   }
 
-  updateColumn(column: Column)
+  updateColumn(titre: string, description : string){
+    return this.httpClient.put<Column>(api + '/columns/' + column._id, column);
+  }
+
 }

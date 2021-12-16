@@ -12,7 +12,7 @@ export class ColumnComponent implements OnInit {
   @Input() column!: Column;
 
   @Output() onColumnDropped: EventEmitter<Column> = new EventEmitter();
-  onUpdateColumn: EventEmitter<Column>= new EventEmitter();
+  @Output() onUpdateColumn: EventEmitter<Column>= new EventEmitter();
 
   constructor(
     private boardService: BoardService
@@ -26,10 +26,8 @@ export class ColumnComponent implements OnInit {
     })
   }
   update():void{
-    this.boardService.updateColumn(this.column).subscribe(()=> columnUpdating{
-      ;
+    this.boardService.updateColumn(title, description).subscribe(columnUpdating =>{
+      this.onUpdateColumn.emit(this.column);
     })
-
-    this.onUpdateColumn.emit(this.column);
   }
 }
