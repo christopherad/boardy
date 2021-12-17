@@ -36,6 +36,6 @@ export class BoardComponent implements OnInit {
     console.log("column >> ", column);
     console.log(column.title);
     this.columnUpdating=column;
-    // findIndex()
+    // findIndex(columnUpdating)
   }
 }
