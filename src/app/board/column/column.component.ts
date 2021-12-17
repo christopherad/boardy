@@ -26,8 +26,6 @@ export class ColumnComponent implements OnInit {
     })
   }
   update():void{
-    this.boardService.updateColumn(title, description).subscribe(columnUpdating =>{
-      this.onUpdateColumn.emit(this.column);
-    })
+    this.onUpdateColumn.emit(this.column);
   }
 }

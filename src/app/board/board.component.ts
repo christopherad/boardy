@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { findIndex } from 'rxjs';
 import { BOARD } from './@shared/mock/board.mock';
 import { COLUMNS } from './@shared/mock/column.mock';
 import { Board, Column } from './@shared/models';
@@ -28,12 +29,13 @@ export class BoardComponent implements OnInit {
 
   deleteColumn(column: Column) {
     console.log("column < ", column)
-    this.columns.filter(columnOff=> columnOff._id !=column._id);
+    this.columns=this.columns.filter(columnOff=> columnOff._id !=column._id)
   }
 
   updateColumn(column: Column) {
     console.log("column >> ", column);
     console.log(column.title);
     this.columnUpdating=column;
+    // findIndex()
   }
 }

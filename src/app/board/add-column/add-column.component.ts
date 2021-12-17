@@ -9,7 +9,8 @@ import { BoardService } from '../@shared/services/board.service';
 })
 export class AddColumnComponent implements OnInit {
 
-  @Input("columnUpdating") set SetColumnUpdating(column : Column | undefined){
+  @Input("columnUpdating") set setColumnUpdating(column : Column | undefined){
+    this.columnIdUpdating = column?._id;
     if(column != undefined){
       this.form.patchValue({
         title: column.title,
@@ -19,6 +20,7 @@ export class AddColumnComponent implements OnInit {
   };
   @Output() onColumnAdded: EventEmitter<Column> = new EventEmitter();
   name = 'Angular';
+  columnIdUpdating?: number;
   public form!: FormGroup
   @Output() onUpdatedColumn : EventEmitter<Column> = new EventEmitter();
 
@@ -51,12 +53,15 @@ export class AddColumnComponent implements OnInit {
    // } else {
    //     console.log('ERROR, FAUT ECRIRE!  ');
   //  }
+  if(!this.columnIdUpdating) {
     this.boardService.addColumn(title, description).subscribe(columnAdded => {
       this.onColumnAdded.emit(columnAdded);
     })
-    this.boardService.updateColumn(title, description).subscribe(columnUpdating => {
+  } else {
+    this.boardService.updateColumn(this.columnIdUpdating, { title, description}).subscribe(columnUpdating => {
       this.onUpdatedColumn.emit(columnUpdating);
     })
+  }
   }
 
 }
